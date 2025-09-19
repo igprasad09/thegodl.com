@@ -488,7 +488,53 @@ public class MergeSort {
 `
 },
          
-                { name: 'Part 2', code: `` },
+                { name: 'knapsach', code: `` },
+
+        { name: 'knapsach', code: `def fractional_knapsack(values, weights, capacity):
+    n = len(values)
+    ratio = [(values[i] / weights[i], values[i], weights[i]) for i in range(n)]
+    ratio.sort(reverse=True)
+
+    total_value = 0
+    for r, v, w in ratio:
+        if capacity >= w:
+            total_value += v
+            capacity -= w
+        else:
+            total_value += r * capacity
+            break
+    return total_value
+
+
+values = [60, 100, 120]
+weights = [10, 20, 30]
+capacity = 50
+
+print("Maximum value:", fractional_knapsack(values, weights, capacity))` },
+        { name: 'sales man', code: `import itertools
+
+dist = [
+    [0, 10, 15, 20],
+    [10, 0, 35, 25],
+    [15, 35, 0, 30],
+    [20, 25, 30, 0]
+]
+
+n = len(dist)
+cities = range(n)
+min_path = None
+min_cost = float('inf')
+
+for perm in itertools.permutations(cities[1:]):
+    path = (0,) + perm + (0,)
+    cost = sum(dist[path[i]][path[i + 1]] for i in range(n))
+    if cost < min_cost:
+        min_cost = cost
+        min_path = path
+
+print("Shortest path:", min_path)
+print("Minimum cost:", min_cost)` },
+        
                 
 
                 {
